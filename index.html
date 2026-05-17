@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VK-DXB-0726 / Proposal to Alaan</title>
+<meta name="description" content="Vedaant Kavasseri. Sales and product engineering. A proposal to Alaan for summer 2026.">
+<meta name="theme-color" content="#120821">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Geist+Mono:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #120821;
+    --bg-2: #1A0F2E;
+    --bg-3: #20143A;
+    --cream: #F2EDE0;
+    --cream-80: rgba(242, 237, 224, 0.82);
+    --cream-60: rgba(242, 237, 224, 0.6);
+    --cream-45: rgba(242, 237, 224, 0.45);
+    --cream-25: rgba(242, 237, 224, 0.25);
+    --cream-10: rgba(242, 237, 224, 0.1);
+    --cream-06: rgba(242, 237, 224, 0.06);
+    --purple: #6B4FE6;
+    --purple-deep: #5B3FD9;
+    --purple-dark: #3D2A8C;
+    --purple-faint: rgba(107, 79, 230, 0.16);
+    --gold: #C4A75A;
+    --gold-70: rgba(196, 167, 90, 0.7);
+    --gold-40: rgba(196, 167, 90, 0.4);
+    --gold-20: rgba(196, 167, 90, 0.22);
+    --serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+    --mono: 'Geist Mono', 'JetBrains Mono', 'SFMono-Regular', Menlo, monospace;
+    --arabic: 'Noto Naskh Arabic', 'Geeza Pro', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 18% 12%, rgba(107, 79, 230, 0.12), transparent 42%),
+      radial-gradient(circle at 88% 78%, rgba(91, 63, 217, 0.08), transparent 50%);
+  }
+
+  ::selection { background: var(--purple); color: var(--cream); }
+
+  /* Film grain overlay */
+  .grain {
+    position: fixed;
+    inset: -50px;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.045;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.93 0 0 0 0 0.88 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 56px;
+    position: relative;
+  }
+
+  /* SECTION FRAMING */
+  .section {
+    position: relative;
+    padding: 112px 0;
+    border-top: 1px solid var(--cream-10);
+  }
+  .section:first-of-type { border-top: none; padding-top: 28px; }
+
+  .section-rail {
+    position: absolute;
+    top: 24px;
+    right: 0;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+  .section-rail::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    vertical-align: middle;
+    margin-right: 14px;
+    opacity: 0.5;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cream-60);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .section-label .glyph { color: var(--gold); font-family: var(--serif); font-style: italic; font-size: 16px; letter-spacing: 0; }
+  .section-label .slash { color: var(--gold-40); }
+
+  /* ========== HERO ========== */
+  .hero {
+    min-height: 100vh;
+    padding-top: 28px;
+    padding-bottom: 64px;
+    display: flex;
+    flex-direction: column;
+    border-top: none;
+  }
+
+  .hero-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fade 0.7s ease 0.15s forwards;
+  }
+  .hero-bar .left { color: var(--cream-60); }
+  .hero-bar .left .slash { color: var(--purple); margin: 0 4px; }
+  .hero-bar .serial { color: var(--gold); display: flex; align-items: center; gap: 12px; }
+  .hero-bar .serial .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); display: inline-block; }
+
+  .hero-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    gap: 80px;
+    align-items: center;
+    margin-top: 64px;
+  }
+
+  .hero-headline {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(34px, 5.4vw, 78px);
+    line-height: 1.02;
+    letter-spacing: -0.022em;
+    font-variation-settings: "opsz" 144;
+    color: var(--cream);
+  }
+
+  .hero-headline .chunk {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(22px);
+    animation: rise 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .hero-headline .chunk + .chunk { margin-left: 0; }
+  .hero-headline .accent { color: var(--purple); font-style: italic; font-weight: 400; }
+  .hero-headline .gold { color: var(--gold); font-style: italic; font-weight: 300; }
+
+  .hero-sub {
+    margin-top: 36px;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: var(--cream-60);
+    max-width: 560px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fade 0.8s ease 1.5s forwards;
+    padding-left: 14px;
+    border-left: 1px solid var(--gold-40);
+  }
+  .hero-sub strong { color: var(--cream-80); font-weight: 500; }
+
+  /* CORPORATE CARD */
+  .card-wrap {
+    perspective: 1400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 1.586 / 1;
+    background:
+      radial-gradient(circle at 80% 0%, rgba(255,255,255,0.15), transparent 55%),
+      linear-gradient(132deg, #5B3FD9 0%, #6B4FE6 48%, #4530A8 100%);
+    border-radius: 18px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 40px 80px -25px rgba(0, 0, 0, 0.75),
+      0 22px 44px -22px rgba(91, 63, 217, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    transform-style: preserve-3d;
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(36px) rotateX(8deg);
+    animation: cardIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+    will-change: transform;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 14px),
+      radial-gradient(circle at 100% 100%, rgba(0,0,0,0.32), transparent 55%);
+    pointer-events: none;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14%;
+    bottom: 14%;
+    width: 3px;
+    background: linear-gradient(180deg, transparent 0%, var(--gold) 22%, var(--gold) 78%, transparent 100%);
+    box-shadow: 0 0 14px rgba(196, 167, 90, 0.5);
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+  }
+
+  .chip {
+    width: 46px;
+    height: 36px;
+    border-radius: 6px;
+    background:
+      linear-gradient(135deg, #E8CB7A 0%, #C4A75A 45%, #7B6634 100%);
+    position: relative;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15);
+  }
+  .chip-grid {
+    position: absolute;
+    inset: 5px;
+    background-image:
+      linear-gradient(to right, rgba(0,0,0,0.28) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.28) 1px, transparent 1px);
+    background-size: 50% 33.33%;
+  }
+  .chip-core {
+    position: absolute;
+    inset: 30%;
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 2px;
+    background: rgba(0,0,0,0.05);
+  }
+
+  .alaan-mark-wrap { text-align: right; }
+  .alaan-mark {
+    font-family: var(--arabic);
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--cream);
+    line-height: 0.9;
+    opacity: 0.96;
+    letter-spacing: 0;
+  }
+  .alaan-mark-sub {
+    display: block;
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-top: 7px;
+    font-weight: 400;
+  }
+
+  .card-mid {
+    position: absolute;
+    bottom: 88px;
+    left: 30px;
+    right: 30px;
+    z-index: 2;
+  }
+  .card-mid .label {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 6px;
+  }
+  .card-name {
+    font-family: var(--mono);
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    color: var(--cream);
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  }
+
+  .card-foot {
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    bottom: 22px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 22px;
+    z-index: 2;
+  }
+  .card-foot .label {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 4px;
+  }
+  .card-foot .value {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  /* ========== PITCH ========== */
+  .pitch-body {
+    font-family: var(--mono);
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--cream-80);
+    max-width: 820px;
+    font-weight: 300;
+  }
+  .pitch-body strong { color: var(--cream); font-weight: 500; }
+  .pitch-body .em { color: var(--purple); font-weight: 500; }
+  .pitch-body .dropcap {
+    float: left;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 78px;
+    line-height: 0.82;
+    color: var(--gold);
+    padding-right: 14px;
+    padding-top: 8px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  /* ========== RECEIPT ========== */
+  .receipt-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 36px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .receipt-head .left { color: var(--gold); }
+  .receipt-head .left .glyph { font-family: var(--serif); font-style: italic; font-size: 16px; margin-right: 8px; letter-spacing: 0; }
+  .receipt-head .right { color: var(--cream-45); }
+
+  .receipt {
+    border-top: 1px solid var(--cream-25);
+    border-bottom: 1px solid var(--cream-25);
+  }
+
+  .receipt-columns,
+  .receipt-row {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1.8fr) minmax(0, 3fr) 130px;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .receipt-columns {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--cream-10);
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cream-45);
+  }
+  .receipt-columns .tag-col { text-align: right; }
+
+  .receipt-row {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--cream-10);
+    transition: background 0.25s ease, padding-left 0.25s ease;
+    position: relative;
+  }
+  .receipt-row:last-child { border-bottom: none; }
+  .receipt-row::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--purple);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .receipt-row:hover::before { opacity: 1; }
+  .receipt-row:hover { padding-left: 10px; }
+
+  .receipt-row .date {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--cream-45);
+    letter-spacing: 0.05em;
+    font-variant-numeric: tabular-nums;
+  }
+  .receipt-row .vendor {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    color: var(--cream);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .receipt-row .outcome {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--cream-60);
+    font-weight: 300;
+    line-height: 1.55;
+  }
+  .receipt-row .tag-cell { text-align: right; }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 6px 11px 5px;
+    border: 1px solid rgba(107, 79, 230, 0.4);
+    border-radius: 3px;
+    color: var(--purple);
+    background: rgba(107, 79, 230, 0.05);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .tag-offer {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(196, 167, 90, 0.06);
+    box-shadow: 0 0 0 1px rgba(196, 167, 90, 0.08);
+  }
+
+  .stamp {
+    position: relative;
+    margin-top: 64px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 24px;
+  }
+  .stamp-mark {
+    font-family: var(--mono);
+    font-size: 15px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 2.5px solid var(--gold);
+    padding: 16px 26px 14px;
+    transform: rotate(-7deg);
+    opacity: 0.32;
+    position: relative;
+    font-weight: 500;
+    background: transparent;
+  }
+  .stamp-mark::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--gold);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* ========== MEMO ========== */
+  .memo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 56px 72px;
+  }
+
+  .memo-item {
+    position: relative;
+    padding-left: 60px;
+  }
+  .memo-num {
+    position: absolute;
+    left: 0;
+    top: -6px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 38px;
+    color: var(--purple);
+    font-weight: 400;
+    line-height: 1;
+    font-variation-settings: "opsz" 144;
+    letter-spacing: -0.02em;
+  }
+  .memo-title {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--cream-10);
+  }
+  .memo-body {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.78;
+    color: var(--cream-60);
+    font-weight: 300;
+  }
+  .memo-body strong { color: var(--cream); font-weight: 500; }
+
+  /* ========== SOW ========== */
+  .sow-head {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-45);
+    margin-bottom: 56px;
+    max-width: 640px;
+    line-height: 1.7;
+    padding-left: 14px;
+    border-left: 1px solid var(--gold-40);
+  }
+  .sow-head strong { color: var(--cream-80); font-weight: 500; }
+
+  .sow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .sow-card {
+    padding: 36px 30px 32px;
+    border: 1px solid var(--cream-10);
+    border-radius: 4px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.018) 0%, transparent 100%);
+    position: relative;
+    transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+    overflow: hidden;
+  }
+  .sow-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .sow-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(107, 79, 230, 0.4);
+    background: linear-gradient(180deg, rgba(107, 79, 230, 0.06) 0%, transparent 100%);
+  }
+  .sow-card:hover::after { opacity: 0.8; }
+
+  .sow-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sow-num::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gold-20);
+  }
+  .sow-title {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.22;
+    color: var(--cream);
+    margin-bottom: 20px;
+    font-variation-settings: "opsz" 36;
+    letter-spacing: -0.008em;
+  }
+  .sow-body {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.72;
+    color: var(--cream-60);
+    font-weight: 300;
+  }
+
+  .sow-foot {
+    margin-top: 52px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--purple);
+    font-weight: 500;
+  }
+  .sow-foot .dot {
+    color: var(--gold);
+    margin: 0 16px;
+  }
+
+  /* ========== BIO ========== */
+  .bio-body {
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--cream-60);
+    max-width: 760px;
+    font-weight: 300;
+  }
+  .bio-body strong { color: var(--cream); font-weight: 500; }
+  .bio-body em { font-style: italic; font-family: var(--serif); font-size: 16px; color: var(--gold); font-weight: 400; }
+
+  /* ========== CTA ========== */
+  .cta-section {
+    text-align: center;
+    padding: 140px 0 120px;
+    border-top: 1px solid var(--cream-10);
+    position: relative;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .cta-eyebrow {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream-45);
+    margin-bottom: 36px;
+  }
+  .cta-eyebrow .glyph { color: var(--gold); font-family: var(--serif); font-style: italic; }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--purple);
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 22px 48px 20px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.35s ease, background 0.25s ease;
+    box-shadow:
+      0 14px 40px -10px rgba(107, 79, 230, 0.65),
+      0 0 0 1px rgba(255,255,255,0.08) inset;
+  }
+  .cta-button:hover, .cta-button:focus-visible {
+    transform: translateY(-3px);
+    box-shadow:
+      0 22px 60px -14px rgba(107, 79, 230, 0.85),
+      0 0 0 1px rgba(255,255,255,0.12) inset;
+    background: #7B61F0;
+    outline: none;
+  }
+  .cta-button .arrow {
+    display: inline-block;
+    margin-left: 14px;
+    transform: translateX(0);
+    transition: transform 0.25s ease;
+  }
+  .cta-button:hover .arrow { transform: translateX(6px); }
+
+  .cta-buttons {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cta-button.ghost {
+    background: transparent;
+    color: var(--cream-80);
+    border: 1px solid var(--cream-25);
+    box-shadow: none;
+    font-weight: 500;
+  }
+  .cta-button.ghost:hover,
+  .cta-button.ghost:focus-visible {
+    background: transparent;
+    border-color: var(--gold);
+    color: var(--cream);
+    box-shadow: 0 10px 30px -14px rgba(196, 167, 90, 0.45);
+  }
+  .cta-button.ghost .arrow {
+    margin-left: 12px;
+    color: var(--gold);
+  }
+  .cta-button.ghost:hover .arrow { transform: translateY(3px) translateX(0); }
+
+  .cta-sub {
+    margin-top: 32px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: var(--cream-45);
+  }
+  .cta-sub .ar {
+    font-family: var(--arabic);
+    font-size: 17px;
+    color: var(--gold);
+    margin: 0 4px;
+    vertical-align: -2px;
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    border-top: 1px solid var(--cream-10);
+    padding: 36px 0 56px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .footer-row .copy { color: var(--cream-45); }
+  .footer-row .copy .yet { color: var(--gold); }
+  .footer-links {
+    display: flex;
+    gap: 32px;
+  }
+  .footer-links a {
+    color: var(--cream-60);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    position: relative;
+  }
+  .footer-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 1px;
+    background: var(--purple);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-links a:hover::after { transform: scaleX(1); }
+
+  /* ANIMATIONS */
+  @keyframes fade { to { opacity: 1; } }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+  @keyframes cardIn {
+    to { opacity: 1; transform: translateY(0) rotateX(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 980px) {
+    .container { padding: 0 32px; }
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 56px;
+      margin-top: 48px;
+    }
+    .card-wrap { order: -1; padding: 0; max-width: 460px; margin: 0 auto; }
+    .memo-grid { grid-template-columns: 1fr; gap: 48px; }
+    .sow-grid { grid-template-columns: 1fr; gap: 18px; }
+    .section { padding: 80px 0; }
+    .hero { padding-top: 24px; }
+  }
+
+  @media (max-width: 720px) {
+    .receipt-columns { display: none; }
+    .receipt-row {
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        "date tag"
+        "vendor vendor"
+        "outcome outcome";
+      gap: 6px 16px;
+      padding: 22px 0;
+    }
+    .receipt-row .date { grid-area: date; }
+    .receipt-row .vendor { grid-area: vendor; padding-top: 4px; }
+    .receipt-row .outcome { grid-area: outcome; padding-top: 2px; font-size: 12.5px; }
+    .receipt-row .tag-cell { grid-area: tag; }
+  }
+
+  @media (max-width: 520px) {
+    .container { padding: 0 22px; }
+    .section { padding: 64px 0; }
+    .hero { padding-bottom: 32px; }
+    .hero-bar { font-size: 10px; letter-spacing: 0.18em; gap: 16px; }
+    .hero-bar .serial { gap: 8px; }
+    .hero-headline { font-size: clamp(30px, 9vw, 44px); }
+    .pitch-body { font-size: 15px; line-height: 1.8; }
+    .pitch-body .dropcap { font-size: 60px; padding-right: 10px; padding-top: 6px; }
+    .receipt-head { font-size: 10px; }
+    .stamp-mark { font-size: 11px; padding: 12px 18px 10px; letter-spacing: 0.24em; }
+    .sow-card { padding: 28px 24px; }
+    .sow-title { font-size: 21px; }
+    .cta-section { padding: 88px 0 80px; }
+    .cta-button { font-size: 11.5px; padding: 18px 28px 16px; letter-spacing: 0.22em; }
+    .cta-sub { font-size: 11px; }
+    .sow-foot { font-size: 11px; letter-spacing: 0.24em; }
+    .sow-foot .dot { margin: 0 10px; }
+    .footer-row { gap: 22px; }
+    .footer-links { gap: 22px; }
+    .card { padding: 24px; max-width: 360px; }
+    .card-mid { left: 24px; right: 24px; bottom: 78px; }
+    .card-foot { left: 24px; right: 24px; bottom: 20px; gap: 14px; }
+    .card-name { font-size: 15px; }
+    .alaan-mark { font-size: 26px; }
+    .memo-num { font-size: 32px; }
+    .memo-item { padding-left: 50px; }
+    .section-rail { font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<main class="container">
+
+  <!-- ============== HERO ============== -->
+  <header class="hero">
+    <div class="hero-bar">
+      <div class="left">Alaan <span class="slash">//</span> Proposal</div>
+      <div class="serial"><span class="dot" aria-hidden="true"></span>VK · DXB · 0726</div>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1 class="hero-headline">
+          <span class="chunk" style="animation-delay:0.35s">Dubai-raised.</span>
+          <span class="chunk" style="animation-delay:0.55s">Manchester Fintech.</span>
+          <span class="chunk" style="animation-delay:0.78s">19.</span>
+          <span class="chunk" style="animation-delay:1.02s">Submitting myself to Alaan as a <span class="accent">line item</span>.</span>
+        </h1>
+        <p class="hero-sub">
+          <strong>July to August 2026.</strong> Sales or product engineering. Internship, part-time, project-based, whatever shape works. I had a few options for the summer. I would rather spend it with you.
+        </p>
+      </div>
+
+      <div class="card-wrap">
+        <div class="card" id="card" role="img" aria-label="Corporate card. Cardholder Vedaant Kavasseri. Role Sales plus product engineering. Valid July to August 2026. Origin Dubai to Manchester to Dubai. Issuer alaan.">
+          <div class="card-top">
+            <div class="chip" aria-hidden="true">
+              <div class="chip-grid"></div>
+              <div class="chip-core"></div>
+            </div>
+            <div class="alaan-mark-wrap">
+              <div class="alaan-mark" lang="ar" dir="rtl">الآن</div>
+              <span class="alaan-mark-sub">Issuer</span>
+            </div>
+          </div>
+
+          <div class="card-mid">
+            <div class="label">Cardholder</div>
+            <div class="card-name">Vedaant Kavasseri</div>
+          </div>
+
+          <div class="card-foot">
+            <div>
+              <div class="label">Role</div>
+              <div class="value">Sales + Prod Eng</div>
+            </div>
+            <div>
+              <div class="label">Valid</div>
+              <div class="value">07/26 · 08/26</div>
+            </div>
+            <div>
+              <div class="label">Origin</div>
+              <div class="value">DXB · MAN · DXB</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============== PITCH ============== -->
+  <section class="section">
+    <div class="section-rail">Folio 01</div>
+    <div class="section-label"><span class="glyph">§</span> 01 <span class="slash">/</span> The Pitch</div>
+    <p class="pitch-body">
+      <span class="dropcap">A</span>laan raised <strong>$48M in August</strong> to scale GTM and ship more AI agents. That is the half of the business I have spent the last year close to, at a different startup. At <strong>Arcube</strong> I work in enterprise sales and build the sales automation stack behind it. I had a few options lined up for July and August. I would rather use those eight weeks <span class="em">at Alaan</span>, in whatever shape the team can take a 19-year-old on. Internship, part-time, project work. Capital cost on your side: <strong>a desk for some of the weeks, and someone who will read every memo before asking a question</strong>.
+    </p>
+  </section>
+
+  <!-- ============== RECEIPT ============== -->
+  <section class="section">
+    <div class="section-rail">Folio 02</div>
+
+    <div class="receipt-head">
+      <div class="left"><span class="glyph">¶</span>Receipt of Work</div>
+      <div class="right">Owner: Vedaant Kavasseri</div>
+    </div>
+
+    <div class="receipt" role="table" aria-label="Receipt of shipped work">
+      <div class="receipt-columns" role="row">
+        <div role="columnheader">Date</div>
+        <div role="columnheader">Vendor</div>
+        <div role="columnheader">Outcome</div>
+        <div role="columnheader" class="tag-col">Tag</div>
+      </div>
+
+      <div class="receipt-row" role="row">
+        <div class="date" role="cell">2022 · 2024</div>
+        <div class="vendor" role="cell">Real Estate Marketing</div>
+        <div class="outcome" role="cell">Founded and ran my own agency. Two years, owner-operator.</div>
+        <div class="tag-cell" role="cell"><span class="tag">Founded</span></div>
+      </div>
+
+      <div class="receipt-row" role="row">
+        <div class="date" role="cell">2024 · now</div>
+        <div class="vendor" role="cell">Arcube</div>
+        <div class="outcome" role="cell">Enterprise sales (banking and hotel) and sales automation engineering. Ongoing.</div>
+        <div class="tag-cell" role="cell"><span class="tag">Role</span></div>
+      </div>
+
+      <div class="receipt-row" role="row">
+        <div class="date" role="cell">2025 · 2026</div>
+        <div class="vendor" role="cell">Redefine Me</div>
+        <div class="outcome" role="cell">Founded and ran. 1,000 users. 5 paying societies. Pivoted mid-Accelerate Me.</div>
+        <div class="tag-cell" role="cell"><span class="tag">Founded</span></div>
+      </div>
+
+      <div class="receipt-row" role="row">
+        <div class="date" role="cell">2025 · now</div>
+        <div class="vendor" role="cell">University of Manchester</div>
+        <div class="outcome" role="cell">BSc Fintech, in progress.</div>
+        <div class="tag-cell" role="cell"><span class="tag">Studies</span></div>
+      </div>
+
+      <div class="receipt-row" role="row">
+        <div class="date" role="cell">2026</div>
+        <div class="vendor" role="cell">Vendetta</div>
+        <div class="outcome" role="cell">Personal project. Grievance agent that does not stop until you get your money back. One message in.</div>
+        <div class="tag-cell" role="cell"><span class="tag">Agents</span></div>
+      </div>
+
+      <div class="receipt-row" role="row">
+        <div class="date" role="cell">2026 · now</div>
+        <div class="vendor" role="cell">Accelerate Me · Cohort 12</div>
+        <div class="outcome" role="cell">Selectee. Pivot landed here: productized AI agents for SMB growth and marketing.</div>
+        <div class="tag-cell" role="cell"><span class="tag tag-offer">Agents · SMB</span></div>
+      </div>
+    </div>
+
+    <div class="stamp" aria-hidden="true">
+      <div class="stamp-mark">Status · Pending Review by Parthi</div>
+    </div>
+  </section>
+
+  <!-- ============== MEMO ============== -->
+  <section class="section">
+    <div class="section-rail">Folio 03</div>
+    <div class="section-label"><span class="glyph">§</span> 02 <span class="slash">/</span> Memo · Why Alaan</div>
+
+    <div class="memo-grid">
+      <article class="memo-item">
+        <div class="memo-num">i.</div>
+        <div class="memo-title">Agents, not chatbots</div>
+        <p class="memo-body">The chatbot to agents pivot is the part that tells me the team picks utility over hype. Most teams would have shipped the chatbot harder. <strong>Killing it and rebuilding around background agents is the harder call.</strong> That is the surface I want to be on.</p>
+      </article>
+
+      <article class="memo-item">
+        <div class="memo-num">ii.</div>
+        <div class="memo-title">KSA, locally shipped</div>
+        <p class="memo-body">KSA is doubling MoM and Alaan is the only one shipping locally adapted product instead of translating English UI. I have spent the last term on structured market research and competitive teardowns. <strong>Happy to do KSA SME segmentation work on day one.</strong></p>
+      </article>
+
+      <article class="memo-item">
+        <div class="memo-num">iii.</div>
+        <div class="memo-title">First in region</div>
+        <p class="memo-body">Apple Pay B2B and the OpenAI integration were both first in region calls. <strong>I have a bias for being early on infrastructure nobody else is wiring up yet.</strong> That is the kind of bet I want to be near for a summer.</p>
+      </article>
+
+      <article class="memo-item">
+        <div class="memo-num">iv.</div>
+        <div class="memo-title">The ESOP buyback</div>
+        <p class="memo-body">The ESOP buyback at the Series A valuation. I am not eligible. I noticed anyway. <strong>It is a tell about how the company thinks about ownership</strong>, and that is what I am buying into for whatever weeks I get.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============== SOW ============== -->
+  <section class="section">
+    <div class="section-rail">Folio 04</div>
+    <div class="section-label"><span class="glyph">§</span> 03 <span class="slash">/</span> Statement of Work · Flexible Format</div>
+
+    <p class="sow-head"><strong>Three starting points, picked from what Alaan is shipping right now.</strong> If the team would rather have me on something else entirely, that wins. The shape that helps Alaan most is the shape I want. Sized for 8 weeks full-time, compresses or extends to fit.</p>
+
+    <div class="sow-grid">
+      <article class="sow-card">
+        <div class="sow-num">01</div>
+        <h3 class="sow-title">Audit Alaan's SME outbound.</h3>
+        <p class="sow-body">Audit current SME sequences, identify what is underperforming, rebuild it against post-raise scale-GTM targets. I have shipped this exact project at Arcube and can hand over the before/after. If reply rate moves, the eight weeks pay for themselves.</p>
+      </article>
+
+      <article class="sow-card">
+        <div class="sow-num">02</div>
+        <h3 class="sow-title">Ship an internal agent the team has been postponing.</h3>
+        <p class="sow-body">Vendor onboarding, expense pre-fill, internal pipeline summary, whatever is on the wishlist that nobody has the eight weeks for. Working prototype, not a deck. The agent surface is where Alaan has chosen to compete; happy to add hands to it.</p>
+      </article>
+
+      <article class="sow-card">
+        <div class="sow-num">03</div>
+        <h3 class="sow-title">KSA SME GTM groundwork.</h3>
+        <p class="sow-body">Top 500 KSA SMEs by sector, mapped to current Alaan product pain. CRM-ready list plus a one-page strategic recommendation. With KSA doubling MoM, the bottleneck is humans doing the segmentation work, not the strategy.</p>
+      </article>
+    </div>
+
+    <div class="sow-foot">Default Alive <span class="dot">·</span> Flexible Weeks <span class="dot">·</span> Your KPI, Not Mine</div>
+  </section>
+
+  <!-- ============== BIO ============== -->
+  <section class="section">
+    <div class="section-rail">Folio 05</div>
+    <div class="section-label"><span class="glyph">§</span> 04 <span class="slash">/</span> Bio</div>
+
+    <p class="bio-body">
+      <strong>Vedaant Kavasseri.</strong> 19, born and raised in Dubai, currently studying Fintech at the University of Manchester. Part-time at Arcube in enterprise sales and sales automation engineering. Writing because I would rather spend the summer at Alaan than anywhere else, and figured the polite thing was to ask. <em>The degree is convenient; the work is the education.</em>
+    </p>
+  </section>
+
+  <!-- ============== CTA ============== -->
+  <section class="cta-section">
+    <div class="cta-eyebrow"><span class="glyph">§</span> 05 <span style="color: var(--cream-25)">/</span> If This Lands</div>
+    <div class="cta-buttons">
+      <a href="https://x.com/letsparthi" class="cta-button" target="_blank" rel="noopener noreferrer">
+        Reply on X <span style="color: rgba(255,255,255,0.6); margin: 0 6px;">/</span> @letsparthi
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <a href="./Vedaant_Kavasseri_CV_May_2026.pdf" class="cta-button ghost" download="Vedaant_Kavasseri_CV.pdf">
+        Download CV
+        <span class="arrow" aria-hidden="true">↓</span>
+      </a>
+    </div>
+    <p class="cta-sub">If not <span class="ar" lang="ar" dir="rtl">الآن</span>, then keep this on file.</p>
+  </section>
+
+  <footer>
+    <div class="footer-row">
+      <div class="copy">© Vedaant Kavasseri 2026. Not affiliated with Alaan. <span class="yet">Yet.</span></div>
+      <nav class="footer-links" aria-label="External links">
+        <a href="https://linkedin.com/in/vedaant-kavasseri-20224a255" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://x.com/Vedaant_k" target="_blank" rel="noopener noreferrer">X</a>
+        <a href="https://github.com/Vedzilla" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  // Corporate card 3D tilt (cursor-driven, perspective-aware)
+  (function () {
+    const card = document.getElementById('card');
+    if (!card) return;
+    const wrap = card.parentElement;
+
+    let raf = null;
+    let active = false;
+
+    function handleMove(e) {
+      const point = e.touches ? e.touches[0] : e;
+      const rect = card.getBoundingClientRect();
+      const x = (point.clientX - rect.left) / rect.width - 0.5;
+      const y = (point.clientY - rect.top) / rect.height - 0.5;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        card.style.transform =
+          'perspective(1200px) rotateY(' + (x * 11).toFixed(2) + 'deg) rotateX(' + (-y * 11).toFixed(2) + 'deg) translateZ(0)';
+      });
+    }
+
+    function reset() {
+      if (raf) cancelAnimationFrame(raf);
+      card.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg) translateZ(0)';
+      active = false;
+    }
+
+    wrap.addEventListener('mouseenter', () => { active = true; });
+    wrap.addEventListener('mousemove', handleMove);
+    wrap.addEventListener('mouseleave', reset);
+
+    // Subtle reduced-motion respect
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      wrap.removeEventListener('mousemove', handleMove);
+    }
+  })();
+</script>
+</body>
+</html>
