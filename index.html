@@ -853,33 +853,97 @@
   }
 
   @media (max-width: 520px) {
-    .container { padding: 0 22px; }
+    .container { padding: 0 20px; }
     .section { padding: 64px 0; }
     .hero { padding-bottom: 32px; }
-    .hero-bar { font-size: 10px; letter-spacing: 0.18em; gap: 16px; }
+    .hero-bar {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
     .hero-bar .serial { gap: 8px; }
-    .hero-headline { font-size: clamp(30px, 9vw, 44px); }
+    .hero-headline { font-size: clamp(30px, 8.5vw, 44px); }
+    .hero-sub { margin-top: 28px; font-size: 13px; }
     .pitch-body { font-size: 15px; line-height: 1.8; }
     .pitch-body .dropcap { font-size: 60px; padding-right: 10px; padding-top: 6px; }
     .receipt-head { font-size: 10px; }
     .stamp-mark { font-size: 11px; padding: 12px 18px 10px; letter-spacing: 0.24em; }
+    .stamp { padding-right: 8px; }
     .sow-card { padding: 28px 24px; }
     .sow-title { font-size: 21px; }
     .cta-section { padding: 88px 0 80px; }
-    .cta-button { font-size: 11.5px; padding: 18px 28px 16px; letter-spacing: 0.22em; }
-    .cta-sub { font-size: 11px; }
-    .sow-foot { font-size: 11px; letter-spacing: 0.24em; }
-    .sow-foot .dot { margin: 0 10px; }
-    .footer-row { gap: 22px; }
+    .cta-buttons { display: flex; flex-direction: column; gap: 14px; width: 100%; padding: 0 4px; }
+    .cta-button { font-size: 11.5px; padding: 18px 22px 16px; letter-spacing: 0.2em; width: 100%; }
+    .cta-sub { font-size: 11px; padding: 0 10px; }
+    .sow-foot { font-size: 11px; letter-spacing: 0.22em; }
+    .sow-foot .dot { margin: 0 8px; }
+    .footer-row { gap: 18px; font-size: 10px; letter-spacing: 0.18em; }
     .footer-links { gap: 22px; }
-    .card { padding: 24px; max-width: 360px; }
-    .card-mid { left: 24px; right: 24px; bottom: 78px; }
-    .card-foot { left: 24px; right: 24px; bottom: 20px; gap: 14px; }
-    .card-name { font-size: 15px; }
-    .alaan-mark { font-size: 26px; }
     .memo-num { font-size: 32px; }
-    .memo-item { padding-left: 50px; }
-    .section-rail { font-size: 9px; }
+    .memo-item { padding-left: 46px; }
+    .memo-title { font-size: 10px; letter-spacing: 0.24em; }
+    .memo-body { font-size: 13px; }
+    .section-rail { font-size: 9px; letter-spacing: 0.2em; }
+    .section-label { font-size: 10px; letter-spacing: 0.24em; gap: 12px; }
+
+    /* CARD — natural flow on mobile, no absolute positioning */
+    .card-wrap { padding: 0; max-width: 100%; }
+    .card {
+      max-width: 100%;
+      aspect-ratio: auto;
+      min-height: 218px;
+      padding: 22px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 14px;
+    }
+    .card::after {
+      top: 12%;
+      bottom: 12%;
+      width: 2.5px;
+    }
+    .chip { width: 38px; height: 30px; }
+    .alaan-mark { font-size: 26px; }
+    .alaan-mark-sub { font-size: 7.5px; letter-spacing: 0.28em; margin-top: 5px; }
+
+    .card-mid {
+      position: static;
+      margin-top: 28px;
+    }
+    .card-mid .label {
+      font-size: 7.5px;
+      letter-spacing: 0.28em;
+      margin-bottom: 5px;
+    }
+    .card-name {
+      font-size: 14.5px;
+      letter-spacing: 0.05em;
+    }
+
+    .card-foot {
+      position: static;
+      margin-top: 22px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+    .card-foot .label {
+      font-size: 7px;
+      letter-spacing: 0.22em;
+      margin-bottom: 4px;
+    }
+    .card-foot .value {
+      font-size: 9.5px;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .container { padding: 0 16px; }
+    .hero-bar .left,
+    .hero-bar .serial { font-size: 9.5px; letter-spacing: 0.14em; }
+    .card-foot .value { font-size: 9px; }
+    .card-name { font-size: 13.5px; }
   }
 </style>
 </head>
