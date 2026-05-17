@@ -747,6 +747,17 @@
   }
   .cta-button.ghost:hover .arrow { transform: translateY(3px) translateX(0); }
 
+  .cta-button .addr {
+    display: inline-block;
+    text-transform: none;
+    font-size: 0.92em;
+    letter-spacing: 0.02em;
+    color: var(--cream-80);
+    margin-left: 10px;
+    font-weight: 400;
+  }
+  .cta-button.ghost:hover .addr { color: var(--cream); }
+
   .cta-sub {
     margin-top: 32px;
     font-family: var(--mono);
@@ -1010,10 +1021,42 @@
     </div>
   </header>
 
-  <!-- ============== PITCH ============== -->
+  <!-- ============== MEMO (WHY ALAAN) ============== -->
   <section class="section">
     <div class="section-rail">Folio 01</div>
-    <div class="section-label"><span class="glyph">§</span> 01 <span class="slash">/</span> The Pitch</div>
+    <div class="section-label"><span class="glyph">§</span> 01 <span class="slash">/</span> Memo · Why Alaan</div>
+
+    <div class="memo-grid">
+      <article class="memo-item">
+        <div class="memo-num">i.</div>
+        <div class="memo-title">Agents, not chatbots</div>
+        <p class="memo-body">The chatbot to agents pivot is the part that tells me the team picks utility over hype. Most teams would have shipped the chatbot harder. <strong>Killing it and rebuilding around background agents is the harder call.</strong> That is the surface I want to be on.</p>
+      </article>
+
+      <article class="memo-item">
+        <div class="memo-num">ii.</div>
+        <div class="memo-title">KSA, locally shipped</div>
+        <p class="memo-body">KSA is doubling MoM and Alaan is the only one shipping locally adapted product instead of translating English UI. I have spent the last term on structured market research and competitive teardowns. <strong>Happy to do KSA SME segmentation work on day one.</strong></p>
+      </article>
+
+      <article class="memo-item">
+        <div class="memo-num">iii.</div>
+        <div class="memo-title">First in region</div>
+        <p class="memo-body">Apple Pay B2B and the OpenAI integration were both first in region calls. <strong>I have a bias for being early on infrastructure nobody else is wiring up yet.</strong> That is the kind of bet I want to be near for a summer.</p>
+      </article>
+
+      <article class="memo-item">
+        <div class="memo-num">iv.</div>
+        <div class="memo-title">The ESOP buyback</div>
+        <p class="memo-body">The ESOP buyback at the Series A valuation. I am not eligible. I noticed anyway. <strong>It is a tell about how the company thinks about ownership</strong>, and that is what I am buying into for whatever weeks I get.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============== PITCH ============== -->
+  <section class="section">
+    <div class="section-rail">Folio 02</div>
+    <div class="section-label"><span class="glyph">§</span> 02 <span class="slash">/</span> The Pitch</div>
     <p class="pitch-body">
       <span class="dropcap">A</span>laan raised <strong>$48M in August</strong> to scale GTM and ship more AI agents. That is the half of the business I have spent the last year close to, at a different startup. At <strong>Arcube</strong> I work in enterprise sales and build the sales automation stack behind it. I had a few options lined up for July and August. I would rather use those eight weeks <span class="em">at Alaan</span>, in whatever shape the team can take a 19-year-old on. Internship, part-time, project work. Capital cost on your side: <strong>a desk for some of the weeks, and someone who will read every memo before asking a question</strong>.
     </p>
@@ -1021,7 +1064,7 @@
 
   <!-- ============== RECEIPT ============== -->
   <section class="section">
-    <div class="section-rail">Folio 02</div>
+    <div class="section-rail">Folio 03</div>
 
     <div class="receipt-head">
       <div class="left"><span class="glyph">¶</span>Receipt of Work</div>
@@ -1084,38 +1127,6 @@
     </div>
   </section>
 
-  <!-- ============== MEMO ============== -->
-  <section class="section">
-    <div class="section-rail">Folio 03</div>
-    <div class="section-label"><span class="glyph">§</span> 02 <span class="slash">/</span> Memo · Why Alaan</div>
-
-    <div class="memo-grid">
-      <article class="memo-item">
-        <div class="memo-num">i.</div>
-        <div class="memo-title">Agents, not chatbots</div>
-        <p class="memo-body">The chatbot to agents pivot is the part that tells me the team picks utility over hype. Most teams would have shipped the chatbot harder. <strong>Killing it and rebuilding around background agents is the harder call.</strong> That is the surface I want to be on.</p>
-      </article>
-
-      <article class="memo-item">
-        <div class="memo-num">ii.</div>
-        <div class="memo-title">KSA, locally shipped</div>
-        <p class="memo-body">KSA is doubling MoM and Alaan is the only one shipping locally adapted product instead of translating English UI. I have spent the last term on structured market research and competitive teardowns. <strong>Happy to do KSA SME segmentation work on day one.</strong></p>
-      </article>
-
-      <article class="memo-item">
-        <div class="memo-num">iii.</div>
-        <div class="memo-title">First in region</div>
-        <p class="memo-body">Apple Pay B2B and the OpenAI integration were both first in region calls. <strong>I have a bias for being early on infrastructure nobody else is wiring up yet.</strong> That is the kind of bet I want to be near for a summer.</p>
-      </article>
-
-      <article class="memo-item">
-        <div class="memo-num">iv.</div>
-        <div class="memo-title">The ESOP buyback</div>
-        <p class="memo-body">The ESOP buyback at the Series A valuation. I am not eligible. I noticed anyway. <strong>It is a tell about how the company thinks about ownership</strong>, and that is what I am buying into for whatever weeks I get.</p>
-      </article>
-    </div>
-  </section>
-
   <!-- ============== SOW ============== -->
   <section class="section">
     <div class="section-rail">Folio 04</div>
@@ -1164,6 +1175,10 @@
         Reply on X <span style="color: rgba(255,255,255,0.6); margin: 0 6px;">/</span> @letsparthi
         <span class="arrow" aria-hidden="true">→</span>
       </a>
+      <a href="mailto:vedaant.kavasser@gmail.com?subject=Alaan%20%2F%20VK-DXB-0726" class="cta-button ghost">
+        Email <span class="addr">vedaant.kavasser@gmail.com</span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
       <a href="./Vedaant_Kavasseri_CV_May_2026.pdf" class="cta-button ghost" download="Vedaant_Kavasseri_CV.pdf">
         Download CV
         <span class="arrow" aria-hidden="true">↓</span>
@@ -1176,6 +1191,7 @@
     <div class="footer-row">
       <div class="copy">© Vedaant Kavasseri 2026. Not affiliated with Alaan. <span class="yet">Yet.</span></div>
       <nav class="footer-links" aria-label="External links">
+        <a href="mailto:vedaant.kavasser@gmail.com">Email</a>
         <a href="https://linkedin.com/in/vedaant-kavasseri-20224a255" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="https://x.com/Vedaant_k" target="_blank" rel="noopener noreferrer">X</a>
         <a href="https://github.com/Vedzilla" target="_blank" rel="noopener noreferrer">GitHub</a>
